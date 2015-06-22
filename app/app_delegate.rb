@@ -16,7 +16,8 @@ class AppDelegate
     @window. makeKeyAndVisible
     puts "Hello Again"
 
-    @window.rootViewController = TapController.alloc.initWithNibName(nil, bundle: nil)
+    controller = TapController.alloc.initWithNibName(nil, bundle: nil)
+    @window.rootViewController = UINavigationController.alloc.initWithRootViewController(controller)
     true
   end
 end
