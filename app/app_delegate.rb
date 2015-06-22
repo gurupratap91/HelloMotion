@@ -24,7 +24,7 @@ class AppDelegate
     other_controller.view.backgroundColor = UIColor.purpleColor
 
     tab_controller = UITabBarController.alloc.initWithNibName(nil, bundle: nil)
-    tab_controller.viewControllers = [nav_controller]
+    tab_controller.viewControllers = [nav_controller,other_controller]
     @window.rootViewController = tab_controller
     true
   end
