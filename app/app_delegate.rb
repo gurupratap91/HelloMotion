@@ -23,6 +23,34 @@ class AppDelegate
     tab_controller = UITabBarController.alloc.initWithNibName(nil, bundle: nil)
     tab_controller.viewControllers = [alphabet_controller, nav_controller]
     @window.rootViewController = tab_controller
+
+    #For Animation
+    @points = [[0, 0], [50, 0], [0, 50], [50, 50]]
+    @current_index = 0
+
+    @view = UIView.alloc.initWithFrame [@points[@current_index], [100, 100]]
+    @view.backgroundColor = UIColor.blueColor
+    @window.addSubview(@view)
+
+    animate_to_next_point
+
     true
+  end
+
+  def animate_to_next_point
+    @current_index += 1
+
+    @current_index = @current_index % @points.count
+
+    UIView.animateWithDuration(2,
+      delay: 5,
+      options: UIViewAnimationOptionCurveLinear,
+      animations: lambda {
+        @view.frame = [@points[@current_index], [100, 100]]
+      },
+      completion: lambda {|finished|
+      self.animate_to_next_point
+      }
+    )
   end
 end
